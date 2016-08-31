@@ -1,0 +1,33 @@
+{
+  "name": "whitehouse",
+  "version": "1.0.0",
+  "description": "album art generator",
+  "main": "index.js",
+  "scripts": {
+    "grunt": "grunt",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://jfw7@github.com/jfw7/whitehouse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jfw7/whitehouse/issues"
+  },
+  "homepage": "https://github.com/jfw7/whitehouse#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-ts": "^6.0.0-beta.3",
+    "grunt-tslint": "^3.2.1",
+    "jade": "^1.11.0",
+    "tslint": "^3.15.1",
+    "typescript": "^1.8.10",
+    "typings": "^1.3.3"
+  }
+}

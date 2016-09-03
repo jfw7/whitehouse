@@ -4,7 +4,8 @@
 import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as path from "path";
-import * as indexRoute from "./routes/index";
+import router from "./routes";
+import * as sassMiddleware from "node-sass-middleware";
 
 /**
  * The server.
@@ -25,7 +26,7 @@ class Server {
    */
   public static bootstrap(): Server {
     return new Server();
-}
+  }
 
   /**
    * Constructor.
@@ -75,6 +76,15 @@ class Server {
       err.status = 404;
       next(err);
     });
+
+    this.app.use(sassMiddleware({
+      src: __dirname,
+      dest: path.join(__dirname, "public"),
+      debug: true,
+      outputStyle: "compressed",
+      prefix:  "/prefix"  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+    }));
+
   }
 
   /**
@@ -85,16 +95,6 @@ class Server {
    * @return void
    */
   private routes() {
-    //get router
-    let router: express.Router;
-    router = express.Router();
-
-    //create routes
-    var index: indexRoute.Index = new indexRoute.Index();
-
-    //home page
-    router.get("/", index.index.bind(index.index));
-
     //use router middleware
     this.app.use(router);
   }

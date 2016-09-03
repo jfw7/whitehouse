@@ -2,6 +2,7 @@
   "dependencies": {
     "body-parser": "registry:npm/body-parser#1.15.2+20160815132839",
     "express": "registry:npm/express#4.14.0+20160815112707",
+    "middleware": "file:node_modules/postcss-middleware/dist/lib/middleware.d.ts",
     "mime": "registry:npm/mime#1.3.0+20160723033700",
     "serve-static": "registry:npm/serve-static#1.11.1+20160810053450"
   },
@@ -11,6 +12,8 @@
     "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160829034835",
     "mime": "registry:dt/mime#0.0.0+20160316155526",
     "node": "registry:dt/node#6.0.0+20160830141956",
+    "node-sass": "registry:dt/node-sass#0.0.0+20160316155526",
+    "node-sass-middleware": "registry:dt/node-sass-middleware#0.0.0+20160131121619",
     "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
   }
 }

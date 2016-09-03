@@ -2,7 +2,8 @@
 var bodyParser = require("body-parser");
 var express = require("express");
 var path = require("path");
-var indexRoute = require("./routes/index");
+var routes_1 = require("./routes");
+var sassMiddleware = require("node-sass-middleware");
 var Server = (function () {
     function Server() {
         this.app = express();
@@ -24,13 +25,16 @@ var Server = (function () {
             err.status = 404;
             next(err);
         });
+        this.app.use(sassMiddleware({
+            src: __dirname,
+            dest: path.join(__dirname, "public"),
+            debug: true,
+            outputStyle: "compressed",
+            prefix: "/prefix"
+        }));
     };
     Server.prototype.routes = function () {
-        var router;
-        router = express.Router();
-        var index = new indexRoute.Index();
-        router.get("/", index.index.bind(index.index));
-        this.app.use(router);
+        this.app.use(routes_1.default);
     };
     return Server;
 }());

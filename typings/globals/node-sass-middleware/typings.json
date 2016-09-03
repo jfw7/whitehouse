@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/bad2560a5487921a2699e1a7db2a8878e6c4e11c/node-sass-middleware/node-sass-middleware.d.ts",
+    "raw": "registry:dt/node-sass-middleware#0.0.0+20160131121619",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/bad2560a5487921a2699e1a7db2a8878e6c4e11c/node-sass-middleware/node-sass-middleware.d.ts"
+  }
+}

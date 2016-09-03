@@ -2,7 +2,8 @@
 const bodyParser = require("body-parser");
 const express = require("express");
 const path = require("path");
-const indexRoute = require("./routes/index");
+const routes_1 = require("./routes");
+const sassMiddleware = require("node-sass-middleware");
 class Server {
     constructor() {
         this.app = express();
@@ -24,13 +25,16 @@ class Server {
             err.status = 404;
             next(err);
         });
+        this.app.use(sassMiddleware({
+            src: __dirname,
+            dest: path.join(__dirname, "public"),
+            debug: true,
+            outputStyle: "compressed",
+            prefix: "/prefix"
+        }));
     }
     routes() {
-        let router;
-        router = express.Router();
-        var index = new indexRoute.Index();
-        router.get("/", index.index.bind(index.index));
-        this.app.use(router);
+        this.app.use(routes_1.default);
     }
 }
 var server = Server.bootstrap();

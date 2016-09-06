@@ -55,7 +55,7 @@ class Server {
   private config() {
     //configure jade
     this.app.set("views", path.join(__dirname, "views"));
-    this.app.set("view engine", "jade");
+    this.app.set("view engine", "pug");
 
     //mount logger
     //this.app.use(logger("dev"));
@@ -77,12 +77,16 @@ class Server {
       next(err);
     });
 
-    this.app.use(sassMiddleware({
-      src: __dirname,
-      dest: path.join(__dirname, "public"),
+    this.app.use("/public", function(req: express.Request, res: express.Response, next: express.NextFunction) {
+      req.url = req.url.replace(/\/([^\/]+)\.[0-9a-f]+\.(css|js|jpg|png|gif|svg)$/, "/$1.$2");
+      next();
+    });
+
+    this.app.use("/public/styles", sassMiddleware({
+      src: path.join(__dirname, "sass"),
+      dest: path.join(__dirname, "public/styles"),
       debug: true,
       outputStyle: "compressed",
-      prefix:  "/prefix"  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
     }));
 
   }

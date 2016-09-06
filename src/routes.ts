@@ -8,8 +8,4 @@ router.get("/", function(req: express.Request, res: express.Response, next: expr
   res.render("index");
 });
 
-router.get("/test", function(req: express.Request, res: express.Response, next: express.NextFunction) {
-  res.render("test");
-});
-
 export default router;

@@ -15,7 +15,7 @@ var Server = (function () {
     };
     Server.prototype.config = function () {
         this.app.set("views", path.join(__dirname, "views"));
-        this.app.set("view engine", "jade");
+        this.app.set("view engine", "pug");
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(express.static(path.join(__dirname, "public")));
@@ -25,12 +25,15 @@ var Server = (function () {
             err.status = 404;
             next(err);
         });
-        this.app.use(sassMiddleware({
-            src: __dirname,
-            dest: path.join(__dirname, "public"),
+        this.app.use("/public", function (req, res, next) {
+            req.url = req.url.replace(/\/([^\/]+)\.[0-9a-f]+\.(css|js|jpg|png|gif|svg)$/, "/$1.$2");
+            next();
+        });
+        this.app.use("/public/styles", sassMiddleware({
+            src: path.join(__dirname, "sass"),
+            dest: path.join(__dirname, "public/styles"),
             debug: true,
             outputStyle: "compressed",
-            prefix: "/prefix"
         }));
     };
     Server.prototype.routes = function () {
